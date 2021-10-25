@@ -7,7 +7,7 @@ ARG BGR=1.6.4
 ARG CTD=0.1
 ARG NCIT=0.6
 
-### 2. Get Java, Python and all required system libraries
+### 2. Get Java and all required system libraries
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     software-properties-common \
