@@ -17,9 +17,6 @@ RUN apt-get update && apt-get upgrade -y \
     make \
     curl \
     tar \
-    python2.7 \
-    python2.7-dev \
-    python-pip \
     locales \
     && locale-gen "en_US.UTF-8"
 
@@ -27,17 +24,6 @@ ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 ### 3. Install custom tools
 WORKDIR /tools
-
-### Python packages ###
-RUN pip2 install virtualenv &&\
-    virtualenv -p python2.7 pyenv &&\
-    . pyenv/bin/activate &&\
-    pip2 install 'pandas==0.19.1' &&\
-    pip2 install 'scipy==0.15.1' &&\
-    pip2 install 'patsy==0.4.1' &&\
-    pip2 install 'statsmodels==0.6.1'
-ENV VIRTUAL_ENV /tools/pyenv
-ENV PATH "$VIRTUAL_ENV/bin:$PATH"
 
 ###### JENA ######
 RUN curl -O -L http://archive.apache.org/dist/jena/binaries/apache-jena-$JENA.tar.gz \
