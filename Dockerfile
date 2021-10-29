@@ -5,14 +5,14 @@ ARG ROBOT=1.8.1
 ARG JENA=3.17.0
 ARG BGR=1.6.4
 ARG CTD=0.1
-ARG NCIT=0.6
+ARG MAT=0.1
 
 ### 2. Get Java and all required system libraries
 RUN apt-get update && apt-get upgrade -y \
     && apt-get install -y \
     software-properties-common \
     build-essential \
-    openjdk-8-jdk \
+    openjdk-11-jdk-headless \
     git \
     make \
     curl \
@@ -42,11 +42,11 @@ RUN curl -O -L https://github.com/balhoff/blazegraph-runner/releases/download/v$
     && chmod +x /tools/blazegraph-runner-$BGR
 ENV PATH "/tools/blazegraph-runner-$BGR/bin:$PATH"
 
-###### NCIT-UTILS ######
-RUN curl -O -L https://github.com/NCI-Thesaurus/ncit-utils/releases/download/v$NCIT/ncit-utils-$NCIT.tgz \
-    && tar -zxf ncit-utils-$NCIT.tgz \
-    && chmod +x /tools/ncit-utils-$NCIT
-ENV PATH "/tools/ncit-utils-$NCIT:$PATH"
+###### MATERIALIZER ######
+RUN curl -O -L https://github.com/balhoff/materializer/releases/download/v$MAT/materializer-$MAT.tgz \
+    && tar -zxf materializer-$MAT.tgz \
+    && chmod +x /tools/materializer-$MAT
+ENV PATH "/tools/materializer-$MAT:$PATH"
 
 ###### CTD-TO-OWL ######
 RUN curl -O -L https://github.com/balhoff/ctd-to-owl/releases/download/v$CTD/ctd-to-owl-$CTD.tgz \
