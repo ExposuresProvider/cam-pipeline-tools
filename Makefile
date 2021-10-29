@@ -10,7 +10,7 @@ ifndef TAG
 $(error TAG is not set)
 endif
 
-DOCKER_IMAGE = cam-kp/cam-pipeline-tools
+DOCKER_IMAGE = renciorg/cam-pipeline-tools
 
 build-tag:
 	docker build -t $(DOCKER_IMAGE):$(TAG) .
