@@ -3,7 +3,7 @@ FROM ubuntu:18.04
 
 ARG ROBOT=1.8.1
 ARG JENA=3.17.0
-ARG BGR=1.6.4
+ARG BGR=1.6.5
 ARG CTD=0.1
 ARG MAT=0.1
 
@@ -46,7 +46,7 @@ ENV PATH "/tools/blazegraph-runner-$BGR/bin:$PATH"
 RUN curl -O -L https://github.com/balhoff/materializer/releases/download/v$MAT/materializer-$MAT.tgz \
     && tar -zxf materializer-$MAT.tgz \
     && chmod +x /tools/materializer-$MAT
-ENV PATH "/tools/materializer-$MAT:$PATH"
+ENV PATH "/tools/materializer-$MAT/bin:$PATH"
 
 ###### CTD-TO-OWL ######
 RUN curl -O -L https://github.com/balhoff/ctd-to-owl/releases/download/v$CTD/ctd-to-owl-$CTD.tgz \
