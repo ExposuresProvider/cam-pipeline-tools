@@ -4,7 +4,7 @@ FROM ubuntu:18.04
 ARG ROBOT=1.8.1
 ARG JENA=3.17.0
 ARG BGR=1.6.5
-ARG CTD=0.1
+ARG CTD=0.2.1
 ARG MAT=0.1
 
 ### 2. Get Java and all required system libraries
