@@ -1,5 +1,5 @@
 ### 1. Get Linux
-FROM ubuntu:18.04
+FROM monarchinitiative/ubergraph:1.1
 
 ARG ROBOT=1.8.1
 ARG JENA=3.17.0
@@ -8,8 +8,11 @@ ARG CTD=0.2.1
 ARG MAT=0.1
 
 ### 2. Get Java and all required system libraries
-RUN apt-get update && apt-get upgrade -y \
-    && apt-get install -y \
+
+ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
+
+RUN apt-get update \
+    && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
     software-properties-common \
     build-essential \
     openjdk-11-jdk-headless \
@@ -20,7 +23,6 @@ RUN apt-get update && apt-get upgrade -y \
     locales \
     && locale-gen "en_US.UTF-8"
 
-ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
 ### 3. Install custom tools
 WORKDIR /tools
@@ -29,12 +31,6 @@ WORKDIR /tools
 RUN curl -O -L http://archive.apache.org/dist/jena/binaries/apache-jena-$JENA.tar.gz \
     && tar -zxf apache-jena-$JENA.tar.gz
 ENV PATH "/tools/apache-jena-$JENA/bin:$PATH"
-
-###### ROBOT ######
-RUN curl -O -L https://github.com/ontodev/robot/releases/download/v$ROBOT/robot.jar \
-    && curl -O -L https://github.com/ontodev/robot/raw/v$ROBOT/bin/robot \
-    && chmod +x robot
-ENV PATH "/tools:$PATH"
 
 ###### BLAZEGRAPH-RUNNER ######
 RUN curl -O -L https://github.com/balhoff/blazegraph-runner/releases/download/v$BGR/blazegraph-runner-$BGR.tgz \
