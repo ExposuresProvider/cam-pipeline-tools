@@ -20,6 +20,8 @@ RUN apt-get update \
     make \
     curl \
     tar \
+    screen \
+    rsync \
     locales \
     && locale-gen "en_US.UTF-8"
 
