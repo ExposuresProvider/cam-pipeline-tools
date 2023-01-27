@@ -51,3 +51,7 @@ RUN curl -O -L https://github.com/balhoff/ctd-to-owl/releases/download/v$CTD/ctd
     && tar -zxf ctd-to-owl-$CTD.tgz \
     && chmod +x /tools/ctd-to-owl-$CTD
 ENV PATH "/tools/ctd-to-owl-$CTD/bin:$PATH"
+
+## Set USER to nru
+RUN useradd -m -u 1000 nru
+USER nru
