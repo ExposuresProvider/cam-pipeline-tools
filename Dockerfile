@@ -4,7 +4,7 @@ FROM monarchinitiative/ubergraph:1.1
 ARG ROBOT=1.9.3
 ARG JENA=4.7.0
 ARG BGR=1.7
-ARG CTD=0.2.1
+ARG CTD=0.3.0
 ARG MAT=0.1
 
 ### 2. Get Java and all required system libraries
