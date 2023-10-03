@@ -1,9 +1,9 @@
 ### 1. Get Linux
 FROM monarchinitiative/ubergraph:1.1
 
-ARG ROBOT=1.8.1
-ARG JENA=3.17.0
-ARG BGR=1.6.5
+ARG ROBOT=1.9.3
+ARG JENA=4.7.0
+ARG BGR=1.7
 ARG CTD=0.2.1
 ARG MAT=0.1
 
@@ -52,6 +52,8 @@ RUN curl -O -L https://github.com/balhoff/ctd-to-owl/releases/download/v$CTD/ctd
     && chmod +x /tools/ctd-to-owl-$CTD
 ENV PATH "/tools/ctd-to-owl-$CTD/bin:$PATH"
 
-## Set USER to nru
-RUN useradd -m -u 1000 nru
-USER nru
+###### SCALA-CLI ######
+RUN curl -fLo scala-cli.deb https://github.com/Virtuslab/scala-cli/releases/latest/download/scala-cli-x86_64-pc-linux.deb \
+    && dpkg -i scala-cli.deb
+
+RUN useradd --system --uid 1001 -m cam
