@@ -19,7 +19,7 @@ ARG MAT=0.1
 
 ENV LANG=en_US.UTF-8 LANGUAGE=en_US:en LC_ALL=en_US.UTF-8
 
-RUN apt-get update \
+RUN apt-get update && apt-get upgrade \
     && DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends \
     software-properties-common \
     build-essential \
