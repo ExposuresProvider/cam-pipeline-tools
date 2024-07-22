@@ -1,3 +1,11 @@
+# Configuration options:
+# - ${USERNAME} is the name of the non-root user to create.
+ARG USERNAME=nru
+# - ${USERID} is the UID of the non-root user.
+ARG USERID=1001
+# - ${DATA} is where the writeable data volume should be mounted.
+ARG DATA=/data
+
 ### 1. Get Linux
 FROM monarchinitiative/ubergraph:1.1
 
@@ -56,4 +64,9 @@ ENV PATH "/tools/ctd-to-owl-$CTD/bin:$PATH"
 RUN curl -fLo scala-cli.deb https://github.com/Virtuslab/scala-cli/releases/latest/download/scala-cli-x86_64-pc-linux.deb \
     && dpkg -i scala-cli.deb
 
-RUN useradd --system --uid 1001 -m cam
+### 4. Set up the $DATA directory.
+mkdir -p $DATA
+
+### 5. Set up a non-root user.
+RUN useradd --uid ${USERID} -m ${USERNAME}
+RUN chown ${USERNAME} ${DATA}
