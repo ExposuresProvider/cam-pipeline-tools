@@ -30,6 +30,7 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get install -y --no-install-recommends 
     make \
     curl \
     tar \
+    vim \
     screen \
     rsync \
     locales
